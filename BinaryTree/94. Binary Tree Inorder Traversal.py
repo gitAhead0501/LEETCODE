@@ -7,7 +7,7 @@ Approach : Just do the inorder traversal and return
 """
 
 # Definition for a binary tree node.
-from typing import Optional
+from typing import List, Optional
 
 
 class TreeNode:
