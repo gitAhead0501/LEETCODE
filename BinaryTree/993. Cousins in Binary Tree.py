@@ -16,9 +16,12 @@ x != y
 x and y are exist in the tree.
 
 
-Approach: Define a function with node, parent, depth and value : For both x and y check if depth is same and parent aren't same
+Approach 1: Define a function with node, parent, depth and value : For both x and y check if depth is same and parent aren't same : DFS
+Approach 2: Use BFS, and check if they are in same level and aren't adjacent
+
 """
 
+from collections import deque
 from typing import Optional
 
 # Definition for a binary tree node.
@@ -28,7 +31,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
+# 1)
 class Solution:
     def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
         def dfs(node, par, dep, val):
@@ -40,3 +43,23 @@ class Solution:
         dep_y, par_y = dfs(root, None, 0, y)
 
         return dep_x == dep_y and par_x != par_y
+
+
+# 2)
+class Solution:
+    def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
+        q = deque()
+        q.append((root, 0))
+        while q:
+            parent = []
+            for i in range(len(q)):
+                node, par = q.popleft()
+                if node.val == x or node.val == y:
+                    parent.append(par)
+                if node.left:
+                    q.append((node.left, node.val))
+                if node.right:
+                    q.append((node.right, node.val))
+            if len(parent) == 2 and parent[0] != parent[1]:
+                return True
+        return False
