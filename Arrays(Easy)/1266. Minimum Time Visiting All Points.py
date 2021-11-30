@@ -27,9 +27,9 @@ from typing import List
 
 class Solution:
     def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
-        p = []
+        res = 0
         for i in range(len(points)-1):
             a = abs(points[i][0]-points[i+1][0])
             b = abs(points[i][1]-points[i+1][1])
-            p.append(max(a,b))
-        return sum(p)
+            res += (max(a,b))
+        return res
