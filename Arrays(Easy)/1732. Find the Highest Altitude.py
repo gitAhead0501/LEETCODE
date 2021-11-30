@@ -9,7 +9,7 @@ A) n == gain.length
 B) 1 <= n <= 100
 C) -100 <= gain[i] <= 100
 
-Approach1: Find the max prefix sum upto each index in each iteration
+Approach1: Find the max prefix sum upto each index in each iteration [EFFICIENT]
 Approach2: Store all the prefix sum in an array and return max value from it
 
 """
