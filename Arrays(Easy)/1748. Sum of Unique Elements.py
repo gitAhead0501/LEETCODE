@@ -12,6 +12,9 @@ Approach: Create a hashtable and add keys for which value is 1
 
 """
 
+from typing import List
+
+
 class Solution:
     def sumOfUnique(self, nums: List[int]) -> int:
         h = {}
