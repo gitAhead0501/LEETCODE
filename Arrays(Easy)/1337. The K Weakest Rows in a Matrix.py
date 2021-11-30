@@ -15,8 +15,8 @@ C) 2 <= n, m <= 100
 D) 1 <= k <= m
 E) matrix[i][j] is either 0 or 1.
 
-Approach: Store soldiers and their indices and return the order of weakest to strongest soldier's i.e. rows : upto k length
-
+Approach1: Store soldiers and their indices and return the order of weakest to strongest soldier's i.e. rows : upto k length
+Approach2: Use heapq
 """
 
 from collections import Counter
