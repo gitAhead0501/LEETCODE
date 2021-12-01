@@ -15,14 +15,37 @@ C) 2 <= n, m <= 100
 D) 1 <= k <= m
 E) matrix[i][j] is either 0 or 1.
 
-Approach1: Store soldiers and their indices and return the order of weakest to strongest soldier's i.e. rows : upto k length
-Approach2: Use heapq
+Approach1: Count the number of soldiers using Binary Search and return rows sorted upto k length
+Approach2: Store soldiers and their indices and return the order of weakest to strongest soldier's i.e. rows : upto k length [Least Efficient] 
+Approach3: Do not count , just sort with sum of soldiers as they denote 1 and return 
+
 """
 
 from collections import Counter
 from typing import List
 
-# TIME COMPLEXITY : O(n*m + nlogn)
+# 1) TIME COMPLEXITY : O(m*(logn+logm)) , SC : O(n)
+class Solution:
+    def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
+        res = []
+        for i in range(len(mat)):
+            count = self.soldier_count(mat[i])
+            res.append([count,i])
+        res.sort()
+        return [res[i][1] for i in range(k)]
+    
+    def soldier_count(self, row: List[int]) -> int:
+        low, high = 0, len(row)
+        while low < high:
+            mid = low + (high-low)//2
+            if row[mid]==1:
+                low = mid + 1
+            else:
+                high = mid
+        return low
+
+# 2) TIME COMPLEXITY : O(n*m + nlogn) , SC : O(n)
+from collections import Counter
 class Solution:
     def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
         res = []
@@ -31,3 +54,15 @@ class Solution:
             res.append([cnt[1],i])
         res.sort()
         return [res[i][1] for i in range(k)]
+
+
+# 3) TIME COMPLEXITY : O(m*(n + logm)) , SC : O(n)
+class Solution:
+    def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
+        res = []
+        for i in range(len(mat)):
+            res.append([sum(mat[i]),i])
+        res.sort()
+        return [res[i][1] for i in range(k)]
+    
+    # ONE LINER : return sorted(range(len(mat)), key=lambda x: sum(mat[x]))[:k]
