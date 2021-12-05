@@ -13,13 +13,14 @@ C) numbers is sorted in non-decreasing order.
 D) -1000 <= target <= 1000
 E) The tests are generated such that there is exactly one solution.
 
-Approach: create a hashtable and store target - nums val and return when nums appears in table
-
+Approach1: create a hashtable and store target - nums val and return when nums appears in table
+Approach2: 2 pointers method
+Approach3: BS
 """
 
 from typing import List
 
-
+# 1)
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         h = {}
@@ -29,3 +30,17 @@ class Solution:
                 h[j] = i+1
             else:
                 return [h[k],i+1]
+
+
+# 2)
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l, r = 0, len(numbers)-1
+        while l < r:
+            s = numbers[l] + numbers[r]
+            if s == target:
+                return [l+1, r+1]
+            elif s < target:
+                l += 1
+            else:
+                r -= 1
