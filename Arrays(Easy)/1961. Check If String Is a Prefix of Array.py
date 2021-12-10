@@ -12,13 +12,18 @@ B) 1 <= words[i].length <= 20
 C) 1 <= s.length <= 1000
 D)words[i] and s consist of only lowercase English letters.
 
-Approach: Iterate in words array and check if previous concatenated string value is in string s or not if not return False else check if it is present then if length of concat string and string s is same or not
+Approach1: Iterate in words array and check if previous concatenated string value is in string s or not if not return False else check if it is present then if length of concat string and string s is same or not
 
+Approach2: For each word in words, check if word is present in s or not by slice method
+
+m = len(words)
+n = len(s)
+k = len(slice)
 """
 
 from typing import List
 
-
+# 1) TC: O(m*n)
 class Solution:
     def isPrefixString(self, s: str, words: List[str]) -> bool:
         res = ""
@@ -27,4 +32,17 @@ class Solution:
             if res in s:
                 if len(res) == len(s):
                     return True    
+        return False
+
+
+# 2) TC: O(m*(n+k))
+class Solution:
+    def isPrefixString(self, s: str, words: List[str]) -> bool:
+        i = 0
+        for word in words:
+            if s[i:i+len(word)]!=word:
+                return False
+            i+=len(word)
+            if i==len(s):
+                return True
         return False
