@@ -34,3 +34,13 @@ class Solution:
                 i+=2
             else:
                 i+=1
+
+        # or use list slicing
+        n=len(arr)
+        i=0
+        while(i<n-1):
+            if arr[i]==0:
+                arr[i+1:n] = arr[i:n-1]
+                i += 2
+            else:
+                i += 1
