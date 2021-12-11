@@ -44,3 +44,19 @@ class Solution:
                 i += 2
             else:
                 i += 1
+
+# 2) MOST EFFICIENT
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        zeros = arr.count(0)
+        for i in reversed(range(len(arr))):
+            if i + zeros < len(arr): 
+                arr[i+zeros] = arr[i]
+            if arr[i] == 0: 
+                zeros -= 1
+                if i + zeros < len(arr): 
+                    arr[i+zeros] = 0
+            print(arr)
