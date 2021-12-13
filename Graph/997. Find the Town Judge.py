@@ -37,3 +37,25 @@ class Solution:
             if x == n-1:
                 return i+1
         return -1
+
+
+
+""" WRONG METHOD
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        if n==1 and not trust:
+            return 1
+        h = {}
+        for each in trust:
+            if each[0] not in h:
+                h[each[0]] = [each[1]]
+            else:
+                h[each[0]].append(each[1])
+        res = list(h.values())
+        ans = set()
+        if res:
+            ans = set.intersection(*map(set,res))
+        if ans:
+            return ans.pop()
+        return -1
+"""
