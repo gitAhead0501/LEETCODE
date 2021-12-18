@@ -46,6 +46,11 @@ class Solution:
                 res[i-1] = h1[i]
         return res
 
+        # or instead of using last 2 for loops
+        for v in h.values():
+            if len(set(v)) <= k:
+                res[len(set(v))-1] += 1
+
 
 
 # 2)
