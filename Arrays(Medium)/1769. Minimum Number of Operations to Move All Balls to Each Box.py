@@ -35,3 +35,22 @@ class Solution:
                     res += abs(k-i)
             ans.append(res)
         return ans
+
+
+# 2)
+class Solution:
+    def minOperations(self, boxes: str) -> List[int]:
+        n = len(boxes)
+        ans = [0]*n
+        leftcost, leftcount, rightcost, rightcount = 0,0,0,0
+        for i in range(1,n):
+            if boxes[i-1] == '1':
+                leftcount += 1
+            leftcost += leftcount
+            ans[i] = leftcost
+        for j in range(n-2,-1,-1):
+            if boxes[j+1] == '1':
+                rightcount += 1
+            rightcost += rightcount
+            ans[j] += rightcost
+        return ans
