@@ -22,6 +22,8 @@ class ListNode:
         self.val = val
         self.next = next
 
+
+# Time Complexity: O(n), Space: O(1)
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         rev,slow,fast = None,head,head
